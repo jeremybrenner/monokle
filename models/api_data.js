@@ -20,7 +20,7 @@ apiDataSchema.statics.fetchData = function (cb) {
  	api.findOne({}, {}, { sort: { 'created_at' : -1 } }, 
  	function (err, apiData) {
  		// if api data is greater than four hours old
-		if(!apiData || currTime - apiData.createdAt > 1000*10*10*4) {
+		if(!apiData || currTime - apiData.createdAt > 1000*10) {
 			console.log("OLD DATA -- fetching new data")
 			if (apiData) {
 				apiData.remove();

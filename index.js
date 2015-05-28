@@ -75,9 +75,14 @@ app.get("/user", function(req, res) {
     })
 });
 
-app.get("/user/monokle", function(req,res) {
-//make ajax call
-})
+// route which fetches and checks data from external API
+app.get("/api/articles", function (req, res) {
+  db.ApiData.fetchData(function (err, data) {
+    console.log(data)
+    res.send(data);
+  })
+});
+
 
 
 app.get("/logout", function(req, res) {
@@ -115,11 +120,10 @@ app.post("/login", function(req, res) {
         })
 });
 
-app.get("/api/articles", function (req, res) {
-  db.ApiData.fetchData(function (err, data) {
-    res.send(data);
-  })
-});
+app.post("/user/favorites", function(req, res){
+  //post link to users
+})
+
 
 
 // Server
