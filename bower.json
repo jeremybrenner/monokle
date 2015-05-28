@@ -1,0 +1,22 @@
+{
+  "name": "monokle",
+  "version": "1.0.0",
+  "authors": [
+    "jmbrenne <jeremybrenner0@gmail.com>"
+  ],
+  "description": "A news visualization app",
+  "main": "index.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.4",
+    "underscore": "~1.8.3"
+  }
+}
