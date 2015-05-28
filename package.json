@@ -4,7 +4,8 @@
   "description": "A news visualization app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm install && bower install && node index.js"
   },
   "author": "Jeremy Brenner",
   "license": "ISC",
