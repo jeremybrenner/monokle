@@ -50,7 +50,11 @@ userSchema.statics.authenticate = function(params, cb) {
             email: params.email
         },
         function(err, user) {
+            if(user){
             user.passCheck(params.password, cb);
+            } else {
+                return err;
+            }
         });
 };
 
