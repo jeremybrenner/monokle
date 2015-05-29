@@ -36,7 +36,23 @@ $(document).ready(function() {
         var $data = $(nameTemp(data));
         $nameCon.append($data)
     })
+
+    $("#delete").on("click", function(event) {
+        console.log("hit it")
+        var $favorite = $(event).closest(".favCon");
+        var _id = $favorite.data("_id");
+        console.log("DELETE", _id);
+        $.ajax({
+            url: "/user/favorites/" + _id,
+            type: "DELETE"
+        }).done(function() {
+            $favorite.remove();
+        });
+
+    });
+
 });
+
 
 // takes favorited article and embeds it in user
 function makeFav(fav) {
@@ -51,5 +67,4 @@ function makeFav(fav) {
     done(function(link) {
         console.log(link)
     });
-
 }

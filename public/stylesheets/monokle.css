@@ -4,6 +4,11 @@ body {
 
 .favorite {
 	margin-bottom: 10px;
+	text-align: center;
+}
+
+.delete {
+	margin: 10px;
 }
 
 #jumbotron div{
@@ -13,3 +18,4 @@ body {
 .panel {
 	border-radius: 10px;
 }
+

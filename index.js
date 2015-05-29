@@ -74,7 +74,8 @@ app.get("/user", function(req, res) {
         }
     })
 });
-/////// internal api ///////
+
+/////////// internal api ///////////
 app.get("/api/current", function(req, res) {
     req.currentUser(function(err, user) {
         res.send(user._id)
@@ -102,6 +103,7 @@ app.get("/user/favorites", function(req, res) {
     })
 });
 
+/////////// GET routes //////////
 // sends user to a page of their favorites
 app.get("/user/favorites/list", function(req, res) {
     var favList = path.join(views, "favorites.html");
@@ -155,13 +157,13 @@ app.post("/user/favorites", function(req, res) {
 })
 
 //unfinished delete function
-// app.delete("/user/favorites/:_id", function(req, res) {
-//     db.User.findOneAndRemove({
-//         _id: req.params._id
-//     }, function(err, favorite) {
-//         res.send(favorite)
-//     })
-// });
+app.delete("/user/favorites/:_id", function(req, res) {
+    db.User.findOneAndRemove({
+        _id: req.params._id
+    }, function(err, favorite) {
+        res.send(favorite)
+    })
+});
 
 
 

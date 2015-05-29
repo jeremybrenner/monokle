@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>monokle | favorites</title>
     <!-- CSS -->
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="stylesheets/monokle.css">
+    <link rel="stylesheet" href="/stylesheets/monokle.css">
     <!-- JS -->
     <script type="text/javascript" src="/underscore/underscore.js"></script>
     <script type="text/javascript" src="/jquery/dist/jquery.js"></script>
@@ -15,40 +16,38 @@
 </head>
 
 <body>
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/user">monokle.</a>
-    </div>
-
-    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Favorite Articles</a></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/logout">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/user">monokle.</a>
+            </div>
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Favorite Articles</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     <!-- where article template renders -->
     <div id="favWrapper">
-    <div id="frame">
-    <iframe class= "col-md-8 col-md-offset-2" name="iframe" width= "800"
- height= "500"></iframe>
-    </div>
-    <div id="favCon">
-    </div>
+        <div id="frame">
+            <iframe class="col-md-8 col-md-offset-2" name="iframe" width="800" height="500"></iframe>
+        </div>
+        <div id="favCon">
+        </div>
     </div>
 </body>
 <!-- template which renders favorites -->
@@ -59,8 +58,13 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                     </div>
-                    <div class="panel-body">  
-                        <div><a href="<%= link %>" target="iframe"><%= title %></a></div>
+                    <div class="panel-body">
+                        <div>
+                            <a href="<%= link %>" target="iframe">
+                                <%= title %>
+                            </a>
+                        </div>
+                        <button class="delete btn btn-xs btn-danger text-center">Delete Entry</button>
                     </div>
                 </div>
             </div>
@@ -68,6 +72,8 @@
     </div>
 </script>
 <script type="text/template" id="nameTemp">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= email %><span class="caret"></span></a>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+        <%= email %><span class="caret"></span></a>
 </script>
+
 </html>
