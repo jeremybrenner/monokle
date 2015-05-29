@@ -47,7 +47,26 @@
                         <div><%= description %></div>
                     </div>
                     <div class="text-center">
-                        <button id="<%= link%>" class="favorite btn btn-xs btn-primary" onClick="makeFav(id)">Favorite</button>
+                        <button id="favorite" data-title='<%= title %>' data-link='<%= link%>' class="favorite btn btn-xs btn-primary" onClick="makeFav(this)">Favorite</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="favoriteTemp">
+    <div class="favCon row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="favorite">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <%= title %>
+                    </div>
+                    <div class="panel-body">  
+                        <div><%= description %></div>
+                    </div>
+                    <div class="text-center">
+                        <button id="favorite" data-title='<%= title %>' data-link='<%= link%>' class="favorite btn btn-xs btn-primary" onClick="makeFav(this)">Favorite</button>
                     </div>
                 </div>
             </div>

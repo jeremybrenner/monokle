@@ -1,4 +1,10 @@
 var mongoose = require("mongoose");
+var favSchema = new mongoose.Schema({
+    title: String,
+    link: String
+});
+
+// var Favorite = mongoose.model("Favorite", favSchema);
 
 var userSchema = new mongoose.Schema({
 
@@ -16,10 +22,8 @@ var userSchema = new mongoose.Schema({
         required: true
     },
 
-    favorites: []
-
+    favorites: [favSchema]
 });
-
 
 var bcrypt = require("bcrypt");
 
@@ -50,8 +54,8 @@ userSchema.statics.authenticate = function(params, cb) {
             email: params.email
         },
         function(err, user) {
-            if(user){
-            user.passCheck(params.password, cb);
+            if (user) {
+                user.passCheck(params.password, cb);
             } else {
                 return err;
             }

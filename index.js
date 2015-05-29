@@ -53,14 +53,14 @@ app.get("/", function(req, res) {
     res.sendFile(path.join(views, "home.html"));
 });
 
-app.get("/signup", function(req, res){
-  var signupPath = path.join(views, "home.html");
-  res.sendFile(signupPath);
+app.get("/signup", function(req, res) {
+    var signupPath = path.join(views, "home.html");
+    res.sendFile(signupPath);
 });
 
-app.get("/login", function(req, res){
-  var loginPath = path.join(views, "home.html");
-  res.sendFile(loginPath);
+app.get("/login", function(req, res) {
+    var loginPath = path.join(views, "home.html");
+    res.sendFile(loginPath);
 });
 
 // get on the user route, redirects to login or
@@ -75,13 +75,22 @@ app.get("/user", function(req, res) {
     })
 });
 
+app.get("/api/current", function(req, res) {
+    req.currentUser(function(err, user) {
+        res.send(user._id)
+    })
+})
+
 // route which fetches and checks data from external API
-app.get("/api/articles", function (req, res) {
-  db.ApiData.fetchData(function (err, data) {
-    console.log(data)
-    res.send(data);
-  })
+app.get("/api/articles", function(req, res) {
+    db.ApiData.fetchData(function(err, data) {
+        res.send(data);
+    })
 });
+
+app.get("/user/favorites", function(req, res) {
+  console.log(db.User.favorites)
+})
 
 
 
@@ -120,8 +129,16 @@ app.post("/login", function(req, res) {
         })
 });
 
-app.post("/user/favorites", function(req, res){
-  //post link to users
+app.post("/user/favorites", function(req, res) {
+    var favObj = req.body
+    console.log(favObj)
+    var current = req.session.userId
+    db.User.findById(current, function(err, user) {
+      user.favorites.push(favObj)
+      user.save()
+      console.log(user)
+    })
+
 })
 
 
