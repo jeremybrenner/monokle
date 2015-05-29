@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>monokle | home</title>
+    <title>monokle | favorites</title>
     <!-- CSS -->
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="stylesheets/monokle.css">
@@ -31,7 +31,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/user/favorites/list">Favorite Articles</a></li>
+            <li><a href="#">Favorite Articles</a></li>
           </ul>
         </li>
       </ul>
@@ -41,35 +41,26 @@
     </div>
   </div>
 </nav>
-    <div class="jumbotron">
-        <div class="container text-center">
-            <h1> Welcome to monokle.</h1>
-            <button type="button" class="btn btn-xs btn-info" data-toggle="collapse" data-target="#instr">Get Started</button>
-            <div id="instr" class="collapse">
-                <p>Choose the stories you want to read, the go to your favorites to see them!</p>
-                </p>
-            </div>
-        </div>
-    </div>
     <!-- where article template renders -->
-    <div id="bodyWrapper">
-    <div id="artCon">
+    <div id="favWrapper">
+    <div id="frame">
+    <iframe class= "col-md-8 col-md-offset-2" name="iframe" width= "800"
+ height= "500"></iframe>
+    </div>
+    <div id="favCon">
+    </div>
     </div>
 </body>
-<!-- template which renders news stories to page from fetch -->
-<script type="text/template" id="articleTemp">
-    <div class="artCon row">
+<!-- template which renders favorites -->
+<script type="text/template" id="favTemp">
+    <div class="favCon row-list">
         <div class="col-md-6 col-md-offset-3">
-            <div class="article">
+            <div class="favorite">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <%= title %>
                     </div>
                     <div class="panel-body">  
-                        <div><%= description %></div>
-                    </div>
-                    <div class="text-center">
-                        <button id="favorite" data-title='<%= title %>' data-link='<%= link%>' class="favorite btn btn-xs btn-primary" onClick="makeFav(this)">Keep This</button>
+                        <div><a href="<%= link %>" target="iframe"><%= title %></a></div>
                     </div>
                 </div>
             </div>

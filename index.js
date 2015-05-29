@@ -74,7 +74,7 @@ app.get("/user", function(req, res) {
         }
     })
 });
-
+/////// internal api ///////
 app.get("/api/current", function(req, res) {
     req.currentUser(function(err, user) {
         res.send(user._id)
@@ -87,12 +87,26 @@ app.get("/api/articles", function(req, res) {
         res.send(data);
     })
 });
+// finds email of current user
+app.get("/api/username", function(req, res) {
+    var current = req.session.userId
+    db.User.findById(current, function(err, user) {
+        res.send(user)
+    })
+});
 
+// retrieves all the favorites stored in a user
 app.get("/user/favorites", function(req, res) {
-  console.log(db.User.favorites)
+    req.currentUser(function(err, user) {
+        res.send(user)
+    })
+});
+
+// sends user to a page of their favorites
+app.get("/user/favorites/list", function(req, res) {
+    var favList = path.join(views, "favorites.html");
+    res.sendFile(favList);
 })
-
-
 
 app.get("/logout", function(req, res) {
     req.logout();
@@ -134,12 +148,20 @@ app.post("/user/favorites", function(req, res) {
     console.log(favObj)
     var current = req.session.userId
     db.User.findById(current, function(err, user) {
-      user.favorites.push(favObj)
-      user.save()
-      console.log(user)
+        user.favorites.push(favObj)
+        user.save()
     })
 
 })
+
+//unfinished delete function
+// app.delete("/user/favorites/:_id", function(req, res) {
+//     db.User.findOneAndRemove({
+//         _id: req.params._id
+//     }, function(err, favorite) {
+//         res.send(favorite)
+//     })
+// });
 
 
 

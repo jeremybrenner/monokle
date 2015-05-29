@@ -5,3 +5,11 @@ body {
 .favorite {
 	margin-bottom: 10px;
 }
+
+#jumbotron div{
+	text-align: center;
+}
+
+.panel {
+	border-radius: 10px;
+}
