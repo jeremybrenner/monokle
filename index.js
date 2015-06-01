@@ -156,7 +156,7 @@ app.post("/user/favorites", function(req, res) {
 
 })
 
-//unfinished delete function
+//delete favorite article from database
 app.delete("/user/favorites/:_id", function (req, res) {
     var current = req.session.userId
     var favArt = req.params._id

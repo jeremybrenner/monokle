@@ -56,6 +56,7 @@ function makeFav(fav) {
 }
 
 // deletes favorited article and removes from list
+// and updates DOM
 function deleteFav(fav) {
     var _id = $(fav).data().id;
     var $favorite = $(fav).closest(".favCon");
