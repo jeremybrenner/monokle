@@ -14,13 +14,14 @@ $(document).ready(function() {
         });
     });
 
-    // grabs and renders favorites stored to a user
+    // grabs and renders favorites stored to a user,
+    // now starting with most recent picks
     $.get("/user/favorites").
     done(function(data) {
         var $favCon = $('#favCon')
         var favTemp = _.template($('#favTemp').html())
         console.log(data.favorites)
-        $(data.favorites).each(function(test, data) {
+        $($(data.favorites).get().reverse()).each(function(test, data) {
             var $data = $(favTemp(data));
             // console.log($data)
             $favCon.append($data)
@@ -39,34 +40,30 @@ $(document).ready(function() {
 
 });
 
-    // takes favorited article and embeds it in user
-    function makeFav(fav) {
-        console.log($(fav).data())
-        var link = $(fav).data().link
-        var title = $(fav).data().title
-        var obj = {
-            title: title,
-            link: link,
-        }
-
-        $.post("/user/favorites", obj).
-        done(function() {
-            console.log(link)
-        });
+// takes favorited article and embeds it in user
+function makeFav(fav) {
+    var link = $(fav).data().link
+    var title = $(fav).data().title
+    var obj = {
+        title: title,
+        link: link,
     }
 
+    $.post("/user/favorites", obj).
+    done(function() {
+        console.log("This link was added to the user: " + link)
+    });
+}
 
-    function deleteFav(fav) {
-        console.log($(fav).data().id)
-        var _id = $(fav).data().id;
-        var $favorite = $(fav).closest(".favCon");
-        console.log($favorite)
-        $.ajax({
-            url: "/user/favorites/" + _id,
-            type: "DELETE"
-        }).done(function(){
-            console.log("were back!")
-            $favorite.remove();
-            console.log("removed!")
-        });
-    }
+// deletes favorited article and removes from list
+function deleteFav(fav) {
+    var _id = $(fav).data().id;
+    var $favorite = $(fav).closest(".favCon");
+    $.ajax({
+        url: "/user/favorites/" + _id,
+        type: "DELETE"
+    }).done(function() {
+        $favorite.remove();
+        console.log("Deleted");
+    });
+}
