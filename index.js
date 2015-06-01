@@ -157,13 +157,17 @@ app.post("/user/favorites", function(req, res) {
 })
 
 //unfinished delete function
-app.delete("/user/favorites/:_id", function(req, res) {
-    db.User.findOneAndRemove({
-        _id: req.params._id
-    }, function(err, favorite) {
-        res.send(favorite)
-    })
+app.delete("/user/favorites/:_id", function (req, res) {
+    var current = req.session.userId
+    var favArt = req.params._id
+    db.User.findById(current, function(err, user) {
+        user.favorites.pull(favArt)
+        user.save()
+        console.log("deleted")
+        res.send(user)
+     })   
 });
+
 
 
 

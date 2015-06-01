@@ -22,7 +22,7 @@ $(document).ready(function() {
         console.log(data.favorites)
         $(data.favorites).each(function(test, data) {
             var $data = $(favTemp(data));
-            console.log($data)
+            // console.log($data)
             $favCon.append($data)
         })
     });
@@ -37,34 +37,36 @@ $(document).ready(function() {
         $nameCon.append($data)
     })
 
-    $("#delete").on("click", function(event) {
-        console.log("hit it")
-        var $favorite = $(event).closest(".favCon");
-        var _id = $favorite.data("_id");
-        console.log("DELETE", _id);
+});
+
+    // takes favorited article and embeds it in user
+    function makeFav(fav) {
+        console.log($(fav).data())
+        var link = $(fav).data().link
+        var title = $(fav).data().title
+        var obj = {
+            title: title,
+            link: link,
+        }
+
+        $.post("/user/favorites", obj).
+        done(function() {
+            console.log(link)
+        });
+    }
+
+
+    function deleteFav(fav) {
+        console.log($(fav).data().id)
+        var _id = $(fav).data().id;
+        var $favorite = $(fav).closest(".favCon");
+        console.log($favorite)
         $.ajax({
             url: "/user/favorites/" + _id,
             type: "DELETE"
-        }).done(function() {
+        }).done(function(){
+            console.log("were back!")
             $favorite.remove();
+            console.log("removed!")
         });
-
-    });
-
-});
-
-
-// takes favorited article and embeds it in user
-function makeFav(fav) {
-    var link = $(fav).data().link
-    var title = $(fav).data().title
-    var obj = {
-        title: title,
-        link: link
     }
-
-    $.post("/user/favorites", obj).
-    done(function(link) {
-        console.log(link)
-    });
-}

@@ -4,7 +4,7 @@ var favSchema = new mongoose.Schema({
     link: String
 });
 
-// var Favorite = mongoose.model("Favorite", favSchema);
+var Favorite = mongoose.model("Favorite", favSchema);
 
 var userSchema = new mongoose.Schema({
 
