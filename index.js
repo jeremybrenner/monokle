@@ -129,6 +129,8 @@ app.post("/signup", function(req, res) {
     });
 });
 
+
+/////////// POST routes //////////
 // route which recieves the post from the login form
 app.post("/login", function(req, res) {
     var user = req.body.user;

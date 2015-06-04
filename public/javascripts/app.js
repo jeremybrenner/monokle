@@ -21,6 +21,7 @@ $(document).ready(function() {
         var $favCon = $('#favCon')
         var favTemp = _.template($('#favTemp').html())
         console.log(data.favorites)
+        //reverses the saved favorites so most recent are first
         $($(data.favorites).get().reverse()).each(function(test, data) {
             var $data = $(favTemp(data));
             // console.log($data)
