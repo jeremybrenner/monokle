@@ -67,7 +67,7 @@ app.get("/login", function(req, res) {
 // goes to main app
 app.get("/user", function(req, res) {
     req.currentUser(function(err, user) {
-        if (!err) {
+        if (user) {
             res.sendFile(path.join(views, "monokle.html"));
         } else {
             res.redirect("/");
