@@ -55,8 +55,7 @@
     <div id="bodyWrapper">
     <div id="artCon">
     </div>
-</body>
-<!-- template which renders news stories to page from fetch -->
+    <!-- template which renders news stories to page from fetch -->
 <script type="text/template" id="articleTemp">
     <div class="artCon row">
         <div class="col-md-6 col-md-offset-3">
@@ -69,7 +68,7 @@
                         <div><%= description %></div>
                     </div>
                     <div class="text-center">
-                        <button id="favorite" data-title='<%= title %>' data-link='<%= link%>' class="favorite btn btn-xs btn-primary" onClick="makeFav(this)">Keep This</button>
+                        <button id="favorite" data-title='<%= title %>' data-link='<%= link %>' class="favorite btn btn-xs btn-primary">Keep This</button>
                     </div>
                 </div>
             </div>
@@ -79,4 +78,5 @@
 <script type="text/template" id="nameTemp">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= email %><span class="caret"></span></a>
 </script>
+</body>
 </html>

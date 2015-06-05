@@ -52,8 +52,7 @@
         <div id="favCon">
         </div>
     </div>
-</body>
-<!-- template which renders favorites -->
+    <!-- template which renders favorites -->
 <script type="text/template" id="favTemp">
     <div class="favCon row-list">
         <div class="col-md-6 col-md-offset-3">
@@ -67,7 +66,7 @@
                                 <%= title %>
                             </a>
                         </div>
-                        <button data-id="<%= _id %>" onClick="deleteFav(this)" type="button" class="delete btn btn-xs btn-danger">Delete</button>
+                        <button id="delete" data-id="<%= _id %>" type="button" class="delete btn btn-xs btn-danger">Delete</button>
                     </div>
                 </div>
             </div>
@@ -78,5 +77,5 @@
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
         <%= email %><span class="caret"></span></a>
 </script>
-
+</body>
 </html>

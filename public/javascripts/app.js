@@ -21,7 +21,7 @@ $(document).ready(function() {
         var $favCon = $('#favCon')
         var favTemp = _.template($('#favTemp').html())
         console.log(data.favorites)
-        //reverses the saved favorites so most recent are first
+            //reverses the saved favorites so most recent are first
         $($(data.favorites).get().reverse()).each(function(test, data) {
             var $data = $(favTemp(data));
             // console.log($data)
@@ -39,7 +39,16 @@ $(document).ready(function() {
         $nameCon.append($data)
     })
 
+    $('body').on("click", "#favorite", function(event) {
+        makeFav(event.target)
+    });
+
+    $('body').on("click", "#delete", function(event) {
+        deleteFav(event.target)
+    })
+
 });
+
 
 // takes favorited article and embeds it in user
 function makeFav(fav) {
