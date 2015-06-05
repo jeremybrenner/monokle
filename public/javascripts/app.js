@@ -1,6 +1,37 @@
 $(document).ready(function() {
 
-    // render articles on page load from db or api call
+  var home = window.location.pathname
+  monokleInit(home);
+
+});
+
+
+
+function monokleInit(home) {
+    renderUser();
+    home === '/user'? renderArticles() : renderFavorites();
+};
+
+// grabbing user name and rendering it to front
+function renderUser() {
+
+    $.get("/api/username").
+    done(function(data) {
+        console.log("email is " + data.email)
+        var $nameCon = $('.dropdown')
+        var nameTemp = _.template($('#nameTemp').html())
+        var $data = $(nameTemp(data));
+        $nameCon.append($data)
+    });
+};
+
+// render articles from db or api call
+function renderArticles() {
+
+    $('body').on("click", "#favorite", function(event) {
+        makeFav(event.target)
+    });
+
     $.get("/api/articles").
     done(function(data) {
         var $artCon = $('#artCon')
@@ -14,8 +45,16 @@ $(document).ready(function() {
         });
     });
 
-    // grabs and renders favorites stored to a user,
-    // now starting with most recent picks
+};
+
+// grabs and renders favorites stored to a user,
+// starts with most recent
+function renderFavorites() {
+
+    $('body').on("click", "#delete", function(event) {
+        deleteFav(event.target)
+    });
+
     $.get("/user/favorites").
     done(function(data) {
         var $favCon = $('#favCon')
@@ -26,29 +65,10 @@ $(document).ready(function() {
             var $data = $(favTemp(data));
             // console.log($data)
             $favCon.append($data)
-        })
+        });
     });
 
-    // grabbing user name and rendering it to front
-    $.get("/api/username").
-    done(function(data) {
-        console.log("email is " + data.email)
-        var $nameCon = $('.dropdown')
-        var nameTemp = _.template($('#nameTemp').html())
-        var $data = $(nameTemp(data));
-        $nameCon.append($data)
-    })
-
-    $('body').on("click", "#favorite", function(event) {
-        makeFav(event.target)
-    });
-
-    $('body').on("click", "#delete", function(event) {
-        deleteFav(event.target)
-    })
-
-});
-
+};
 
 // takes favorited article and embeds it in user
 function makeFav(fav) {
@@ -57,13 +77,13 @@ function makeFav(fav) {
     var obj = {
         title: title,
         link: link,
-    }
+    };
 
     $.post("/user/favorites", obj).
     done(function() {
         console.log("This link was added to the user: " + link)
     });
-}
+};
 
 // deletes favorited article and removes from list
 // and updates DOM
@@ -77,4 +97,4 @@ function deleteFav(fav) {
         $favorite.remove();
         console.log("Deleted");
     });
-}
+};
