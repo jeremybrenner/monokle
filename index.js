@@ -174,6 +174,6 @@ app.delete("/user/favorites/:_id", function (req, res) {
 
 
 // Server
-app.listen(process.env.PORT || 3001, function() {
+app.listen(process.env.PORT || 3000, function() {
     console.log("THE MAGIC IS HAPPENING");
 })

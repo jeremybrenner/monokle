@@ -1,16 +1,17 @@
 $(document).ready(function() {
 
   var home = window.location.pathname
+  console.log(home)
   monokleInit(home);
 
 });
-
 
 
 function monokleInit(home) {
     renderUser();
     home === '/user'? renderArticles() : renderFavorites();
 };
+
 
 // grabbing user name and rendering it to front
 function renderUser() {
@@ -36,7 +37,7 @@ function renderArticles() {
     done(function(data) {
         var $artCon = $('#artCon')
         var artTemp = _.template($('#articleTemp').html())
-        data = JSON.parse(data)
+        data = JSON.parse(data);
         console.log(data)
         $(data.stories).each(function(test, data) {
             var $data = $(artTemp(data));
@@ -78,7 +79,6 @@ function makeFav(fav) {
         title: title,
         link: link,
     };
-
     $.post("/user/favorites", obj).
     done(function() {
         console.log("This link was added to the user: " + link)
