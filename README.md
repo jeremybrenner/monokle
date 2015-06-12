@@ -4,7 +4,7 @@ A simple news article visualization app which allows a user to sort their favori
 
 ## Technical Objective:
 
-The point of this app was a dynamic app using an API, with a focus on front end rendering/templates and use of Ajax.
+The point of this project was a dynamic app that leveraged an external API, with a focus on front end rendering/templates and use of Ajax.
 A specific focus of this project was building user registration/authentication/validation with the user of model methods instead of a package like Passport. 
 
 
